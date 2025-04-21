@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn, OneToOne } from 'typeorm';
 import { UserRoleEnum } from 'src/common/enums';
+import { Cart } from 'src/carts/entities/cart.entity';
 
 @Entity()
 export class User {
@@ -24,9 +25,7 @@ export class User {
     })
     role: string;
 
-    @Column('jsonb', { default: [] })
-    cart: Array<{
-        product: string;
-        quantity: number;
-    }>;
+    @OneToOne(() => Cart)
+    @JoinColumn()
+    cart: Cart;
 }
