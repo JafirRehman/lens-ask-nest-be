@@ -1,31 +1,43 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn, OneToOne } from 'typeorm';
-import { UserRoleEnum } from 'src/common/enums';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    OneToOne,
+    OneToMany,
+} from 'typeorm';
 import { Cart } from 'src/carts/entities/cart.entity';
+import { Order } from 'src/orders/entities/order.entity';
+
+export enum UserRole {
+    CUSTOMER = 'Customer',
+    ADMIN = 'Admin'
+}
 
 @Entity()
 export class User {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id: number;
 
-    @Column({ nullable: false })
+    @Column()
     name: string;
 
-    @Column({ nullable: false, unique: true })
+    @Column({ unique: true })
     email: string;
 
-    @Column({ nullable: false })
+    @Column()
     password: string;
 
-    @Column({ nullable: false })
+    @Column()
     image: string;
 
-    @Column({
-        type: 'enum',
-        enum: UserRoleEnum, default: UserRoleEnum.ADMIN
-    })
-    role: string;
+    @Column({ type: 'enum', enum: UserRole, default: UserRole.CUSTOMER })
+    role: UserRole;
 
-    @OneToOne(() => Cart)
-    @JoinColumn()
+    @OneToOne(() => Cart, (cart) => cart.user, {
+        cascade: true,
+    })
     cart: Cart;
+
+    @OneToMany(() => Order, (order) => order.user)
+    orders: Order[];
 }

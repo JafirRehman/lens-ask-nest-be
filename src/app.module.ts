@@ -11,6 +11,8 @@ import { Order } from './orders/entities/order.entity';
 import { Product } from './products/entities/product.entity';
 import { Subscriber } from './subscribers/entities/subscriber.entity';
 import { CartsModule } from './carts/carts.module';
+import { CartItemsModule } from './cart-items/cart-items.module';
+import { OrderItemsModule } from './order-items/order-items.module';
 
 @Module({
   imports: [
@@ -29,6 +31,8 @@ import { CartsModule } from './carts/carts.module';
     OrdersModule,
     ProductsModule,
     CartsModule,
+    CartItemsModule,
+    OrderItemsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
