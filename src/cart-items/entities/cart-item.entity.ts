@@ -15,8 +15,6 @@ export class CartItem {
     })
     cart: Cart;
 
-    @ManyToOne(() => Product, {
-        eager: true,
-    })
+    @ManyToOne(() => Product)
     product: Product;
 }

@@ -13,6 +13,9 @@ import { Subscriber } from './subscribers/entities/subscriber.entity';
 import { CartsModule } from './carts/carts.module';
 import { CartItemsModule } from './cart-items/cart-items.module';
 import { OrderItemsModule } from './order-items/order-items.module';
+import { Cart } from './carts/entities/cart.entity';
+import { CartItem } from './cart-items/entities/cart-item.entity';
+import { OrderItem } from './order-items/entities/order-item.entity';
 
 @Module({
   imports: [
@@ -22,7 +25,7 @@ import { OrderItemsModule } from './order-items/order-items.module';
       port: 5432,
       password: 'Abc#123',
       username: 'postgres',
-      entities: [User, Subscriber, Order, Product],
+      entities: [User, Subscriber, Order, Product, Cart, CartItem, OrderItem, Order],
       database: 'lens-ask',
       synchronize: false,
     }),

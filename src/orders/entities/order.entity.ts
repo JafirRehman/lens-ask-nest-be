@@ -23,9 +23,6 @@ export class Order {
     @ManyToOne(() => User, (user) => user.orders)
     user: User;
 
-    @OneToMany(() => OrderItem, (orderItem) => orderItem.order, {
-        cascade: true,
-        eager: true, // Automatically load items when fetching order
-    })
+    @OneToMany(() => OrderItem, (orderItem) => orderItem.order)
     orderItems: OrderItem[];
 }

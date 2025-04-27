@@ -18,8 +18,6 @@ export class OrderItem {
     })
     order: Order;
 
-    @ManyToOne(() => Product, {
-        eager: true, // Automatically load product info in order item
-    })
+    @ManyToOne(() => Product)
     product: Product;
 }

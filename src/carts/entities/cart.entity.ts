@@ -10,9 +10,6 @@ export class Cart {
     @OneToOne(() => User, (user) => user.cart)
     user: User;
 
-    @OneToMany(() => CartItem, (cartItem) => cartItem.cart, {
-        cascade: true, // Automatically persist new items when added to cart.cartItems
-        eager: true,   // Automatically load cartItems when fetching a Cart
-    })
+    @OneToMany(() => CartItem, (cartItem) => cartItem.cart)
     cartItems: CartItem[];
 }
