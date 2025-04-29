@@ -27,7 +27,7 @@ import { OrderItem } from './order-items/entities/order-item.entity';
       username: 'postgres',
       entities: [User, Subscriber, Order, Product, Cart, CartItem, OrderItem, Order],
       database: 'lens-ask',
-      synchronize: false,
+      synchronize: true,
     }),
     UsersModule,
     SubscribersModule,

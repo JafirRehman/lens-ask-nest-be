@@ -4,10 +4,10 @@ import { Product } from 'src/products/entities/product.entity';
 
 @Entity()
 export class CartItem {
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
-    @Column()
+    @Column({ default: 1 })
     quantity: number;
 
     @ManyToOne(() => Cart, (cart) => cart.cartItems, {
@@ -15,6 +15,8 @@ export class CartItem {
     })
     cart: Cart;
 
-    @ManyToOne(() => Product)
+    @ManyToOne(() => Product,{
+        onDelete: 'CASCADE',
+    })
     product: Product;
 }

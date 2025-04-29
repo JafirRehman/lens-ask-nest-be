@@ -2,8 +2,8 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeor
 
 @Entity()
 export class Product {
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column({ length: 120 })
     title: string;
@@ -16,9 +16,6 @@ export class Product {
 
     @Column()
     image: string;
-
-    @Column()
-    category: string;
 
     @CreateDateColumn()
     createdAt: Date;

@@ -16,7 +16,7 @@ export enum UserRole {
 @Entity()
 export class User {
     @PrimaryGeneratedColumn('uuid')
-    id: number;
+    id: string;
 
     @Column()
     name: string;
@@ -33,9 +33,7 @@ export class User {
     @Column({ type: 'enum', enum: UserRole, default: UserRole.CUSTOMER })
     role: UserRole;
 
-    @OneToOne(() => Cart, (cart) => cart.user, {
-        cascade: true,
-    })
+    @OneToOne(() => Cart, (cart) => cart.user)
     cart: Cart;
 
     @OneToMany(() => Order, (order) => order.user)

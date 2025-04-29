@@ -4,20 +4,22 @@ import { Order } from 'src/orders/entities/order.entity';
 
 @Entity()
 export class OrderItem {
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column()
     quantity: number;
 
-    @Column('decimal', { precision: 10, scale: 2 })
-    priceAtPurchaseTime: number;
+    @Column()
+    price: number;
 
     @ManyToOne(() => Order, (order) => order.orderItems, {
         onDelete: 'CASCADE',
     })
     order: Order;
 
-    @ManyToOne(() => Product)
+    @ManyToOne(() => Product,{
+        onDelete: 'CASCADE',
+    })
     product: Product;
 }

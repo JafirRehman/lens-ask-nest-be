@@ -11,16 +11,18 @@ import { OrderItem } from 'src/order-items/entities/order-item.entity';
 
 @Entity()
 export class Order {
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column({ default: 'pending' })
-    status: string; // e.g., pending, confirmed, shipped, delivered, cancelled
+    status: string;
 
     @CreateDateColumn()
     createdAt: Date;
 
-    @ManyToOne(() => User, (user) => user.orders)
+    @ManyToOne(() => User, (user) => user.orders, {
+        onDelete: 'CASCADE',
+    })
     user: User;
 
     @OneToMany(() => OrderItem, (orderItem) => orderItem.order)
