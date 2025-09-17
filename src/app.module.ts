@@ -23,7 +23,7 @@ import { OrderItem } from './order-items/entities/order-item.entity';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      password: 'Abc#123',
+      password: 'abc123',
       username: 'postgres',
       entities: [User, Subscriber, Order, Product, Cart, CartItem, OrderItem, Order],
       database: 'lens-ask',
